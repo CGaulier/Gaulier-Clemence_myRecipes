@@ -5,9 +5,13 @@ const express = require('express');
 const router = express.Router();
 //
 
-
+/** Mes constantes pour mes ID
+ * 
+ * */
 const mongodb = require('mongodb');
 const ObjectId = mongodb.ObjectID;
+//
+
 
 /**
  * 
@@ -51,9 +55,14 @@ router.get( '/', (req, res) => {
  
  });
 
+//
+
+
+
 /**
- * Modifier des valeurs !!!
+ * details des valeurs !!!
  */
+
 // Afficher la liste des posts dans la page INDEX
 router.post( '/detail-recipes/:id', (req, res) => {
     
@@ -83,7 +92,7 @@ router.post( '/detail-recipes/:id', (req, res) => {
          });
 
 
-
+//
 
 
 
@@ -108,6 +117,8 @@ router.get('/suppr-recipes',(req, res)=>{
     res.render('suppr-recipes')
 });
 
+//
+
 /**
  * Créer une route pour les details des taches
 */
@@ -118,10 +129,9 @@ router.get('/detail-recipes',(req, res)=>{
 
 
 //
-/*
 
 
-
+/** 
 Exporter le module de route
 */
 module.exports = router;

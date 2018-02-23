@@ -67,7 +67,7 @@ router.get( '/recipes', (req, res) => {
 
 });
 
-    //Créer une route API pour ajouter un article
+    //Créer une route API pour ajouter une recette
     router.post('/add-recipes', (req,res)=>{
         console.log(req.body);
         mongoose.connect(mongoServeur, (err, db)=>{
@@ -78,7 +78,7 @@ router.get( '/recipes', (req, res) => {
                 db.collection('recipes').insert({ 
                     title: req.body.title, 
                    type:req.body.type}, (err, newObject)=>{
-                    //Verifier l'ajout
+                    //Verifier l'ajout et redirection vers l'accueil
                     if(err){res.redirect(500,'/') }
                     else{
                         res.redirect(301, '/')
@@ -98,7 +98,7 @@ router.get( '/recipes', (req, res) => {
 
 //
 
-    //Créer une route API pour supprimer un article
+    //Créer une route API pour supprimer une recette
     router.post('/suppr-recipes/:id', (req,res)=>{
         console.log(req.params.id);
         mongoose.connect(mongoServeur, (err, db)=>{
@@ -129,17 +129,17 @@ router.get( '/recipes', (req, res) => {
 
 //
 /** 
-    //Créer une route API pour update un article
-    router.post('/update-posts', (req,res)=>{
+    //Créer une route API pour update une recette
+    router.post('/update-recipes', (req,res)=>{
         console.log(req.body);
         mongoose.connect(mongoServeur, (err, db)=>{
             //Tester ma connexion
-            if(err){ res.render('update-posts', {msg:err}) }
+            if(err){ res.render('update-recipes', {msg:err}) }
             else{
-                //Connexion ouverte : ajouter les données dans la BDD
-                db.collection('posts').update({ 
+                //Connexion ouverte : update les données dans la BDD
+                db.collection('recipes').update({ 
                     title: req.body.title, 
-                   type:req.body.type}, (err, newObject)=>{
+                   type:req.body.content}, (err, newObject)=>{
                     //Verifier l'ajout
                     if(err){res.redirect(500,'/') }
                     else{
