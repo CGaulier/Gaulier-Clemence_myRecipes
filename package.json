@@ -1,0 +1,27 @@
+{
+  "name": "exoperso",
+  "version": "1.0.0",
+  "description": "exo sur le site todoMVC.com",
+  "main": "index.ejs",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CGaulier/TodosMVC_test.git"
+  },
+  "author": "Clemence Gaulier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CGaulier/TodosMVC_test/issues"
+  },
+  "homepage": "https://github.com/CGaulier/TodosMVC_test#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.6",
+    "nodemon": "^1.15.1",
+    "path": "^0.12.7"
+  }
+}
