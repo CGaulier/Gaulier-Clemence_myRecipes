@@ -19,7 +19,7 @@ const ObjectId = mongodb.ObjectID;
  */
 
     const mongoose = require('mongoose');
-    const mongoServeur = 'mongodb://localhost:27017/recette';
+    const mongoServeur = 'mongodb://localhost:27017/my-recipes';
 //
 
 
@@ -34,14 +34,14 @@ router.use(bodyParser.urlencoded({extended: false}));
 Définition des routes
 */
 
-// Accueil de l'API
+// Accueil de mon API
 router.get( '/', (req, res) => {
     // Renvoyer un flux JSON dans la réponse
-    res.json( { content: 'Hello API' } );
+    res.json( { content: 'Hello from API' } );
 });
 
 // Afficher la liste des tâches
-router.get( '/posts', (req, res) => {
+router.get( '/recipes', (req, res) => {
    
     //Connextion à la base de données mongoDB
     mongoose.connect(mongoServeur, (err, db)=>{
@@ -49,7 +49,7 @@ router.get( '/posts', (req, res) => {
         if(err){ res.json({error: err}) }
         else{
             //Connexion ouverte : récupérer la collection de données
-            db.collection('posts').find().toArray( (err, collection)=>{
+            db.collection('recipes').find().toArray( (err, collection)=>{
 
                 //tester la connexion de la collection
                 if(err){res.json({error:err})}
@@ -68,14 +68,14 @@ router.get( '/posts', (req, res) => {
 });
 
     //Créer une route API pour ajouter un article
-    router.post('/add-posts', (req,res)=>{
+    router.post('/add-recipes', (req,res)=>{
         console.log(req.body);
         mongoose.connect(mongoServeur, (err, db)=>{
             //Tester ma connexion
-            if(err){ res.render('add-posts', {msg:err}) }
+            if(err){ res.render('add-recipes', {msg:err}) }
             else{
                 //Connexion ouverte : ajouter les données dans la BDD
-                db.collection('posts').insert({ 
+                db.collection('recipes').insert({ 
                     title: req.body.title, 
                    type:req.body.type}, (err, newObject)=>{
                     //Verifier l'ajout
@@ -99,14 +99,14 @@ router.get( '/posts', (req, res) => {
 //
 
     //Créer une route API pour supprimer un article
-    router.post('/suppr-posts/:id', (req,res)=>{
+    router.post('/suppr-recipes/:id', (req,res)=>{
         console.log(req.params.id);
         mongoose.connect(mongoServeur, (err, db)=>{
             //Tester ma connexion
-            if(err){ res.render('suppr-posts', {msg:err}) }
+            if(err){ res.render('suppr-recipes', {msg:err}) }
             else{
                 //Connexion ouverte : supprimer les données dans la BDD
-                db.collection('posts').remove({ 
+                db.collection('recipes').remove({ 
                     _id: new ObjectId(req.params.id)
                    }, (err, newObject)=>{
                     //Verifier LA SUPPRESSION
@@ -128,8 +128,8 @@ router.get( '/posts', (req, res) => {
 
 
 //
-
-    //Créer une route API pour ajouter un article
+/** 
+    //Créer une route API pour update un article
     router.post('/update-posts', (req,res)=>{
         console.log(req.body);
         mongoose.connect(mongoServeur, (err, db)=>{
@@ -156,7 +156,7 @@ router.get( '/posts', (req, res) => {
 
 
 
-
+*/
 
 //
 

@@ -15,7 +15,7 @@ const ObjectId = mongodb.ObjectID;
  */
 
 const mongoose = require('mongoose');
-const mongoServeur = 'mongodb://localhost:27017/blog';
+const mongoServeur = 'mongodb://localhost:27017/my-recipes';
 //
 
 /*
@@ -30,7 +30,7 @@ router.get( '/', (req, res) => {
          if(err){ res.json({error: err}) }
          else{
              //Connexion ouverte : récupérer la collection de données
-             db.collection('posts').find().toArray( (err, collection)=>{
+             db.collection('recipes').find().toArray( (err, collection)=>{
  
                  //tester la connexion de la collection
                  if(err){res.render('index',{error:err})}
@@ -55,24 +55,24 @@ router.get( '/', (req, res) => {
  * Modifier des valeurs !!!
  */
 // Afficher la liste des posts dans la page INDEX
-router.post( '/detail-posts/:id', (req, res) => {
+router.post( '/detail-recipes/:id', (req, res) => {
     
              // Connexion à la BDD MongoDB
              mongoose.connect( mongoServeur, ( err, db ) => {
      
                  // Tester la connexion à la BDD
-                 if( err ) { res.render('detail-posts', {error: err}) }
+                 if( err ) { res.render('detail-recipes', {error: err}) }
                  else {
      
                      // Connexion ouverte : récupérer la collection de données
-                     db.collection('posts').find({ _id: new ObjectId(req.params.id) }).toArray( (err, collection) => {
+                     db.collection('recipes').find({ _id: new ObjectId(req.params.id) }).toArray( (err, collection) => {
      
                          // Tester la connexion à la collection
-                         if( err ) { res.render('detail-posts', {error: err}) }
+                         if( err ) { res.render('detail-recipes', {error: err}) }
                          else{
      
                              // Collection récupérée : Renvoyer le fichier index dans la réponse avec la collection
-                             res.render('detail-posts', {data: collection});
+                             res.render('detail-recipes', {data: collection});
                          };
                      });
                  };
@@ -91,8 +91,8 @@ router.post( '/detail-posts/:id', (req, res) => {
  * Créer une route pour ajouter des taches
 */
 
-    router.get('/add-posts',(req, res)=>{
-        res.render('add-posts')
+    router.get('/add-recipes',(req, res)=>{
+        res.render('add-recipes')
     });
 
 
@@ -104,16 +104,16 @@ router.post( '/detail-posts/:id', (req, res) => {
  * Créer une route pour suppr des taches
 */
 
-router.get('/suppr-posts',(req, res)=>{
-    res.render('suppr-posts')
+router.get('/suppr-recipes',(req, res)=>{
+    res.render('suppr-recipes')
 });
 
 /**
  * Créer une route pour les details des taches
 */
 
-router.get('/detail-posts',(req, res)=>{
-    res.render('detail-posts')
+router.get('/detail-recipes',(req, res)=>{
+    res.render('detail-recipes')
 });
 
 
