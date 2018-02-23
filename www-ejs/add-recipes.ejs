@@ -1,0 +1,23 @@
+<% include partials/header %>
+    <main>
+
+
+        <form action="/api/add-recipes/" name="verif"  method="POST">
+            Titre :<input type="text" name="title" id="title">
+            Description :<input type="text" name="content" id="content">
+            Ingredients :<input type="text" name="ingredients" id="ingredients">
+            <button onclick="return validateForm()">Valider</button>
+        
+
+            <div class="container">
+                <div id="popup" align="center" style="visibility:hidden" >
+                    <h3>Voulez-vous vraiment ajouter cette recette ?</h3>
+                    <a href="/">Retour</a>
+                    <button type="submit">Ajouter</button>
+                </div>
+            </div>
+        </form>
+
+            
+    </main>
+<% include partials/footer %>

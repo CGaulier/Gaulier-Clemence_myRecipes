@@ -1,0 +1,14 @@
+<% include partials/header %>   <!--cette ligne appel mon header dans un dossier nommé partials, en gros cette simple ligne me permet de répéter 
+des éléments html sur les pages que je veux !  --> 
+    <main>
+        <% for(let item of data){%> <!--Pour afficher la liste des recettes, j'utilise une boucle for en ejs -->
+            <article>
+                <h2><%= item.title %></h2>
+                <form action="/detail-recipes/<%=item._id %>" method="POST">
+                    <button type="submit">Afficher la recette</button>  
+                </form> 
+            </article>
+             <% } %>
+            <a href="/add-recipes">AJOUTER</a>
+    </main>
+    <% include partials/footer %><!--partials du footer -->

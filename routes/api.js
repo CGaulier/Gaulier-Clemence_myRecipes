@@ -17,9 +17,8 @@ const ObjectId = mongodb.ObjectID;
  * 
  * Configuration de Mongoose
  */
-
-    const mongoose = require('mongoose');
-    const mongoServeur = 'mongodb://localhost:27017/my-recipes';
+const mongoose = require('mongoose');
+const mongoServeur = 'mongodb://localhost:27017/my-recipes';
 //
 
 
@@ -41,7 +40,7 @@ router.get( '/', (req, res) => {
 });
 
 // Afficher la liste des tâches
-router.get( '/recipes', (req, res) => {
+router.get( '/my-recipes', (req, res) => {
    
     //Connextion à la base de données mongoDB
     mongoose.connect(mongoServeur, (err, db)=>{
@@ -74,14 +73,18 @@ router.get( '/recipes', (req, res) => {
             //Tester ma connexion
             if(err){ res.render('add-recipes', {msg:err}) }
             else{
-                //Connexion ouverte : ajouter les données dans la BDD
+                //Connexion ouverte : ajouter les données dans la BDD avec insert
                 db.collection('recipes').insert({ 
                     title: req.body.title, 
-                   type:req.body.type}, (err, newObject)=>{
+                    content: req.body.content, 
+                   ingredients:req.body.ingredients}, 
+                   (err, newObject)=>{
                     //Verifier l'ajout et redirection vers l'accueil
                     if(err){res.redirect(500,'/') }
                     else{
+                        //res.redirect(301, '/detail-recipes/:id') ça ne marche pas vu que l'id est undefined a ce stade
                         res.redirect(301, '/')
+                        console.log(req.params.id)
                     }
                 })
             };

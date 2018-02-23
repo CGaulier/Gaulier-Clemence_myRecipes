@@ -1,0 +1,25 @@
+<% include partials/header %>
+    <main>
+        <% for(let item of data){%>
+            <article>
+                <h1><%= item.title %></h1>
+                <p><%= item.ingredients %></p>
+                <p><%= item.content %></p>
+            </article>
+            <form action="/api/suppr-recipes/<%=item._id %>" method="POST">
+                <button onclick="return popUp()">Supprimer</button> 
+
+                <div class="container">
+                        <div id="popup" align="center" style="visibility:hidden" >
+                            <h3>Voulez-vous vraiment supprimer cette recette ?</h3>
+                            <a href="/">Retour</a>
+                            <button type="submit">Oui je veux supprimer</button>
+                        </div>
+                    </div>
+            </form>  
+            <a href="/">Retour vers l'accueil</a>
+             <% } %>
+
+
+    </main>
+<% include partials/footer %>
