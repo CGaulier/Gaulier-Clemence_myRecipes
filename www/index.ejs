@@ -13,19 +13,15 @@
         <% for(let item of data){%>
             <article>
                 <h2><%= item.title %></h2>
-                <p><%= item.type %></p>
+                <form action="/detail-recipes/<%=item._id %>" method="POST">
+                    <button type="submit">Afficher la recette</button>  
+                </form> 
             </article>
-            <form action="/api/suppr-recipes/<%=item._id %>" method="POST">
-                <button type="submit">suppr</button>  
-            </form>  
-            <form action="/detail-recipes/<%=item._id %>" method="POST">
-                <button type="submit">MODIFIER</button>  
-            </form>  
              <% } %>
             <a href="/add-recipes">AJOUTER</a>
-            <br>
-
-
     </main>
+    <footer>
+        <p>Under the TERRYPRATCHET Licence</p>
+    </footer>
 </body>
 </html>

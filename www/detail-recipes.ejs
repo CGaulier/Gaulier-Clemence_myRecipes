@@ -8,22 +8,17 @@
     <title>MARGOULIN</title>
 </head>
 <body>
-    <h1>Au long loin du long couloir ...</h1>
     <main>
         <% for(let item of data){%>
             <article>
-                    <textarea name="title"><%= item.title %></textarea>
-                <p><%= item.type %></p>
-                <select name="type">
-                        <option value="IMG">IMG</option>
-                        <option value="VID">VID</option>
-                        <option value="TXT">TXT</option>
-                </select>   
+                <h1><%= item.title %></h1>
+                <p><%= item.ingredients %></p>
+                <p><%= item.content %></p>
             </article>
-            <form action="/api/update-posts/<%=item._id %>" method="POST">
-                <button type="submit">Modifier</button>  
+            <form action="/api/suppr-recipes/<%=item._id %>" method="POST">
+                <button type="submit">SUPPRIMER</button>  
             </form>  
- 
+            <a href="/">Retour vers l'accueil</a>
              <% } %>
 
 

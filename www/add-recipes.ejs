@@ -8,22 +8,18 @@
     <title>MARGOULIN</title>
 </head>
 <body>
-    <h1>Adddddddd</h1>
     <main>
-         
+        <h1>Adddddddd</h1>  
 
-<form action="/api/add-posts/" method="POST">
-    
-                <textarea name="title"></textarea>
-                 <select name="type">
-                <option value="IMG">IMG</option>
-                <option value="VID">VID</option>
-                <option value="TXT">TXT</option>
-                </select>   
-                <button type="submit">Valide steup'</button>
-            </form>
+        <form action="/api/add-recipes/" name="verif" onsubmit="return validateForm()" method="POST">
+            Titre :<input type="text" name="title" id="title">
+            Description :<input type="text" name="content" id="content">
+            Ingredients :<input type="text" name="ingredients" id="ingredients">
+            <button type="submit">Valide steup'</button>
+        </form>
 
             
     </main>
+<script src="JS/script.js"></script>
 </body>
 </html>
